@@ -66,6 +66,8 @@ ENV/
 env/
 env.bak/
 venv.bak/
+.env
+.env/
 
 # VS Code (in case someone uses it too)
 .vscode/

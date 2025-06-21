@@ -1,0 +1,7 @@
+Languages & Frameworks: Python, FastAPI, gRPC
+
+Machine Learning & AI: LLMs, RAG, Hugging Face, LSTM, RNN
+
+Databases: MongoDB, Postgres, InfluxDB, Qdrant (vector DBs)
+
+Tools & Platforms: LangChain, Docker, Git

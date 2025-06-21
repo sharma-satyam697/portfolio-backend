@@ -1,2 +1,63 @@
-chromadb==1.0.13
+import os
+from chromadb import AsyncHttpClient
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+from dotenv import load_dotenv
 
+from utils.logger import Logger
+
+load_dotenv()
+
+class ChromaDB:
+    _client = None
+    _embedding_function = SentenceTransformerEmbeddingFunction(
+        model_name="sentence-transformers/all-mpnet-base-v2"
+    )
+
+    @classmethod
+    async def create_collection(cls, collection_name: str):
+        if cls._client is None:
+            cls._client = AsyncHttpClient(host=os.getenv("CHROMA_URI"))
+
+        collection = await cls._client.get_or_create_collection(
+            name=collection_name,
+            embedding_function=cls._embedding_function
+        )
+        await Logger.info_log(f"created collection - {collection_name}")
+        return collection
+
+    @staticmethod
+    async def add_documents(collection_name: str, documents: list[str], ids: list[str], metadatas: list[dict] = None):
+        collection = await ChromaDB._client.get_collection(name=collection_name)
+        await collection.add(
+            documents=documents,
+            ids=ids,
+            metadatas=metadatas if metadatas else [{} for _ in documents]
+        )
+
+    @staticmethod
+    async def query(collection_name: str, query_texts: list[str], n_results: int = 5):
+        collection = await ChromaDB._client.get_collection(name=collection_name)
+        results = await collection.query(
+            query_texts=query_texts,
+            n_results=n_results
+        )
+        return results
+
+    @staticmethod
+    async def get_all(collection_name: str):
+        collection = await ChromaDB._client.get_collection(name=collection_name)
+        return await collection.get()
+
+    @staticmethod
+    async def delete_documents(collection_name: str, ids: list[str]):
+        collection = await ChromaDB._client.get_collection(name=collection_name)
+        await collection.delete(ids=ids)
+
+    @staticmethod
+    async def delete_collection(collection_name: str):
+        await ChromaDB._client.delete_collection(name=collection_name)
+        await Logger.info_log(f"Collection {collection_name} deleted successfully")
+
+    @staticmethod
+    async def list_collections():
+        return await ChromaDB._client.list_collections()
