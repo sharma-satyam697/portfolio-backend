@@ -14,9 +14,20 @@ class ChromaDB:
     )
 
     @classmethod
-    async def create_collection(cls, collection_name: str):
+    async def connect(cls):
         if cls._client is None:
-            cls._client = AsyncHttpClient(host=os.getenv("CHROMA_URI"))
+            cls._client = await AsyncHttpClient(host=os.getenv("CHROMA_URI"))
+            await Logger.info_log('Connection established')
+
+    @classmethod
+    async def close(cls):
+        if cls._client:
+            await cls._client.close()
+
+        return None
+
+    @classmethod
+    async def create_collection(cls, collection_name: str):
 
         collection = await cls._client.get_or_create_collection(
             name=collection_name,
@@ -31,7 +42,7 @@ class ChromaDB:
         await collection.add(
             documents=documents,
             ids=ids,
-            metadatas=metadatas if metadatas else [{} for _ in documents]
+            metadatas=metadatas
         )
 
     @staticmethod
@@ -44,9 +55,9 @@ class ChromaDB:
         return results
 
     @staticmethod
-    async def get_all(collection_name: str):
+    async def get_all(collection_name: str,where_condition:dict):
         collection = await ChromaDB._client.get_collection(name=collection_name)
-        return await collection.get()
+        return await collection.get(where= where_condition)
 
     @staticmethod
     async def delete_documents(collection_name: str, ids: list[str]):

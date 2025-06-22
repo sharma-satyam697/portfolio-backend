@@ -75,3 +75,6 @@ venv.bak/
 # System-specific files
 .DS_Store
 Thumbs.db
+
+/basic_checking.py
+basic_checking
