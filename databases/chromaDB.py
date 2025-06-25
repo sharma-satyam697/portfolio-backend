@@ -46,13 +46,21 @@ class ChromaDB:
         )
 
     @staticmethod
-    async def query(collection_name: str, query_texts: list[str], n_results: int = 5):
+    async def query_docs(collection_name: str, query_texts: list[str], n_results: int = 5,threshold_score:float=1.3) -> list:
         collection = await ChromaDB._client.get_collection(name=collection_name)
         results = await collection.query(
             query_texts=query_texts,
-            n_results=n_results
+            n_results=n_results,
+
         )
-        return results
+        chunks = []
+        if results.get('ids')[0]:
+            for i,score in enumerate(results.get('distances')[0]):
+                if score <= threshold_score:
+                    chunks.append(results.get('documents')[0][i])
+
+
+        return chunks
 
     @staticmethod
     async def get_all(collection_name: str,where_condition:dict):

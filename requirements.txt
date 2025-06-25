@@ -4,3 +4,6 @@ fastapi==0.115.13
 langchain-community==0.3.26
 llama_cpp_python==0.3.9
 langchain-openai==0.3.24
+motor==3.7.1
+pydantic==2.11.7
+aiosmtplib==4.0.1
