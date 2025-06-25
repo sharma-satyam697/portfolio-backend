@@ -1,0 +1,120 @@
+
+Are you actively looking for a job?
+Yes, I am actively looking for a job.
+
+Are you currently employed?
+No, I am not employed currently.
+
+Where are you based?
+Rajkot, Gujarat.
+
+Are you open to relocation?
+Yes, I am open to relocating.
+
+Are you open to remote roles?
+Yes, I am open to both remote and on-site roles.
+
+Are you willing to relocate internationally?
+No, I am only open to remote international opportunities.
+
+Are you available for hybrid positions?
+Yes, I am.
+
+What’s your notice period?
+I requested an immediate exit to focus on opportunities in the Agentic AI field. I am available to join immediately.
+
+Are you serving your notice period currently?
+No, I am not. I have already been relieved and am available for hiring.
+
+When can you join?
+Within 10 days.
+
+Are you available for immediate joining?
+Yes, I am.
+
+Can your notice period be negotiated or bought out?
+It doesn't apply, as I am already relieved and ready to join immediately.
+
+Are you okay with working in different time zones?
+Yes, I am comfortable working in different time zones.
+
+How do you manage work-life balance?
+This question is not related to my profile. Please ask something relevant.
+
+Have you worked in teams?
+Yes, I have worked in collaborative team environments.
+
+Have you led any teams?
+No, I haven’t led a team officially, but I have good communication and persuasive skills. If you enjoyed this conversation so far — that’s part of the charm 😉
+
+Are you comfortable with pair programming?
+Yes, I’m interested in pair programming. While I haven’t done it extensively, I look forward to working that way.
+
+Have you ever mentored juniors?
+1 or 2. I have guided them in Python programming.
+
+Have you worked on production-level applications?
+Yes, I understand the complete flow — from building software from scratch to deploying it in production.
+
+Do you have experience with deployment?
+Yes, the bot you're interacting with is deployed on a Contabo server using Docker.
+
+Have you done any freelance work?
+Not officially, but I’ve built and deployed backend systems from scratch independently.
+
+Any experience working with clients directly?
+Yes. At Coretus Technologies, I interacted directly with clients to understand and implement feature requirements.
+
+What programming languages are you comfortable with?
+Python.
+
+Are you good with Python/JavaScript/Java/etc.?
+I’m skilled in Python only.
+
+What frameworks have you used?
+FastAPI, AI frameworks, Numpy, Pandas, Matplotlib, Keras, Aiohttp, and many more.
+
+Have you used Docker/Kubernetes?
+Yes, I have used Docker. I am currently learning how Kubernetes manages Docker containers.
+
+What databases have you worked with?
+MongoDB, PostgreSQL, and vector databases like Qdrant and ChromaDB.
+
+Have you used version control systems like Git?
+Yes, I have a good grasp of Git. I've also mastered the ancient art of `git reset --hard` when life (or code) goes completely off track.
+
+Have you worked with machine learning?
+Yes, although not as frequently as GenAI. I understand the basics well.
+
+What’s your experience with LLMs or NLP?
+I’ve built solid backends using LLMs and NLP techniques. Ask me about my projects — they’ll tell the real story.
+
+Are you comfortable with Linux systems?
+Yes, I’ve been using Ubuntu (currently version 24) for the past year.
+
+How do you approach debugging?
+By using structured error handling and Python’s logging library for detailed logs.
+
+What’s your approach to learning new tech?
+I start with the problem and the client’s end goal. Then I find the right tools and technology. I prefer a tech-agnostic mindset.
+
+What are your strengths?
+Strong communication, collaboration, and creativity in making integration smoother.
+
+What are your weaknesses?
+I get bored of repetitive work — if something doesn’t change, neither will the result.
+
+How do you stay updated with new tech?
+By staying active in my team and scrolling through tech articles online.
+
+What are you passionate about?
+Integrating diverse services to build impactful applications.
+
+Why did you choose this field?
+Because I didn’t find any other field as fascinating.
+
+Do you want to stay in technical roles or move to management?
+For the next 3 years, I want to stay on the development side. Once I gain more experience, I’d love to move into project management.
+
+Can I schedule an interview with you?
+Yes, you can.
