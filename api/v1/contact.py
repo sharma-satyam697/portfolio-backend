@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from fastapi import APIRouter,Request
 from fastapi.exceptions import  HTTPException
 from icecream import ic
+from starlette.responses import JSONResponse
 
 from databases.mongoDB import MongoMotor
 from schemas.schemas import ContactForm
@@ -32,7 +33,8 @@ async def contact_form(form_data:ContactForm ,request:Request):
 
         YOUR_EMAIL = os.getenv("EMAIL")
         APP_PASS = os.getenv("APP_PASSWORD")
-
+        ic(YOUR_EMAIL)
+        ic(APP_PASS)
         msg = MIMEMultipart()
         msg['From'] = email
         msg['To'] = YOUR_EMAIL
@@ -49,7 +51,6 @@ async def contact_form(form_data:ContactForm ,request:Request):
             """
 
         msg.attach(MIMEText(body, 'plain'))
-
         await aiosmtplib.send(
             msg,
             hostname="smtp.gmail.com",
@@ -70,4 +71,4 @@ async def contact_form(form_data:ContactForm ,request:Request):
 
     except Exception as e:
         await Logger.error_log(__name__,'contact_form',e)
-        return {"status" : "Failed","message" : "Message sent failed"}
+        return JSONResponse(status_code=400,content='Failed to send the message. Please be patient — we will fix it soon')
