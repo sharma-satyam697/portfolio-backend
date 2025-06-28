@@ -6,5 +6,5 @@ class QueryData(BaseModel):
 
 class ContactForm(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     message: str

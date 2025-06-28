@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 
 import bson
 from fastapi import FastAPI, APIRouter, Request
@@ -42,7 +42,7 @@ async def chat_with_llm(query:QueryData,request:Request):
         chat_pair = {
             "query": message.strip(),
             "response": response.get("response"),
-            'timestamp' : datetime.now(tz=UTC)
+            'timestamp' : datetime.now(tz=timezone.utc)
         }
 
         update_operation = {
