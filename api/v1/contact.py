@@ -1,5 +1,4 @@
 import os
-import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -10,7 +9,6 @@ from fastapi.exceptions import  HTTPException
 from icecream import ic
 from starlette.responses import JSONResponse
 
-from databases.mongoDB import MongoMotor
 from schemas.schemas import ContactForm
 from utils.logger import Logger
 
@@ -60,12 +58,12 @@ async def contact_form(form_data:ContactForm ,request:Request):
             password=APP_PASS
         )
 
-
-        await MongoMotor.insert_one('contact',{
-            'name' : name,
-            'email' : email,
-            'message' : message
-        })
+        #
+        # await MongoMotor.insert_one('contact',{
+        #     'name' : name,
+        #     'email' : email,
+        #     'message' : message
+        # })
 
         return {"status": "success", "message": "Message sent successfully!"}
 
