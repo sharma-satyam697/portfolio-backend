@@ -1,13 +1,10 @@
 import os
-from datetime import datetime, timezone
 
-import bson
 from fastapi import FastAPI, APIRouter, Request
 from dotenv import load_dotenv
 from icecream import ic
 
 from databases.chromaDB import ChromaDB
-from databases.mongoDB import MongoMotor
 from schemas.schemas import QueryData
 from utils.langchain.retriver import gpt_response, prompt
 from utils.logger import Logger
@@ -39,32 +36,32 @@ async def chat_with_llm(query:QueryData,request:Request):
         response = await gpt_response(prompt=prompt,query=message.strip(),context=chunks)
 
 
-        chat_pair = {
-            "query": message.strip(),
-            "response": response.get("response"),
-            'timestamp' : datetime.now(tz=timezone.utc)
-        }
+        # chat_pair = {
+        #     "query": message.strip(),
+        #     "response": response.get("response"),
+        #     'timestamp' : datetime.now(tz=timezone.utc)
+        # }
 
-        update_operation = {
-            "$setOnInsert": {
-                "user_id": user_id,
-                "created_at": datetime.utcnow()
-            },
-            "$set": {
-                "last_active": datetime.utcnow()
-            },
-            "$push": {
-                "messages": chat_pair
-            }
-        }
+        # update_operation = {
+        #     "$setOnInsert": {
+        #         "user_id": user_id,
+        #         "created_at": datetime.utcnow()
+        #     },
+        #     "$set": {
+        #         "last_active": datetime.utcnow()
+        #     },
+        #     "$push": {
+        #         "messages": chat_pair
+        #     }
+        # }
 
-        updated_doc = await MongoMotor.find_one_and_update_one(
-            collection_name="q_n_a",
-            find_filter={"user_id": user_id},
-            update_operation=update_operation,
-            return_doc=True,  # return updated doc if you need it
-            upsert=True
-        )
+        # updated_doc = await MongoMotor.find_one_and_update_one(
+        #     collection_name="q_n_a",
+        #     find_filter={"user_id": user_id},
+        #     update_operation=update_operation,
+        #     return_doc=True,  # return updated doc if you need it
+        #     upsert=True
+        # )
 
         return {
             'response' : response.get('response')

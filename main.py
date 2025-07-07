@@ -9,7 +9,6 @@ from add_all_documents import add_profile_data_croma
 from api.v1.chat import chat_router
 from api.v1.contact import contact_router
 from databases.chromaDB import ChromaDB
-from databases.mongoDB import MongoMotor
 from utils.logger import Logger
 
 
@@ -17,7 +16,6 @@ from utils.logger import Logger
 async def lifespan(app: FastAPI):
     try:
         await ChromaDB.connect()
-        await MongoMotor.connect_to_mongo()
         await ChromaDB.create_collection("profile")
         await add_profile_data_croma("knowledge_base/", "profile")
 
@@ -29,7 +27,6 @@ async def lifespan(app: FastAPI):
     try:
         for collec in await ChromaDB.list_collections():
             await ChromaDB.delete_collection(collec.name)
-        await MongoMotor.close_mongo_connection()
     except Exception as e:
         await Logger.error_log(__name__,'lifespan',e)
 
